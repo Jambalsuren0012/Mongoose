@@ -18,7 +18,7 @@ router.route("/register").post(register);
 router
   .route("/")
   .post(createUser)
-  .get(checkLogin, authorization("Admin"), getAllUsers);
+  .get(checkLogin, authorization("User"), getAllUsers);
 
 router
   .route("/:id")

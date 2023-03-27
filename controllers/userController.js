@@ -16,8 +16,8 @@ const getAllUsers = async (req, res, next) => {
 };
 
 const createUser = async (req, res, next) => {
-  const { name, email, password, profileImg } = req.body;
-
+  const {role, name, email, password, profileImg } = req.body;
+console.log(req.body)
   try {
     if (!name || !email || !password) {
       res
@@ -26,6 +26,7 @@ const createUser = async (req, res, next) => {
     }
 
     const user = await User.create({
+      role,
       name,
       email,
       password,
@@ -124,14 +125,14 @@ const login = async (req, res, next) => {
 };
 
 const register = async (req, res, next) => {
-  const { name, email, password,  } = req.body;
+  const {  name, email, password, phone } = req.body;
 
   try {
     const hashedPassword = bcrypt.hashSync(password, 10);
     const user = await User.create({
       name,
       email,
-   
+      phone,
       password: hashedPassword,
     });
 
